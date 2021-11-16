@@ -3,7 +3,8 @@ package frame;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
-
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 
 public class DrawingCanvas extends Canvas{
 	private int x;
@@ -15,8 +16,8 @@ public class DrawingCanvas extends Canvas{
 	
 	public DrawingCanvas(){
 		super();
-		x = 0;
-		y = 0;
+		x = 10;
+		y = 10;
 		w = 7;
 		h = 7;	
 	}
@@ -32,9 +33,9 @@ public class DrawingCanvas extends Canvas{
 	@Override
 	public void paint(Graphics graphics) { //그림 그리는 역할
 		graphics.setColor(color);
-		graphics.fillOval(x, y, w, h);
+		graphics.drawLine(0, 0, x, y); //라인이 그려지게 되는 부분
 		
-		System.out.println("paint called x: " + x + "y: " + y);
+		//System.out.println("paint called x: " + x + "y: " + y);
 	}
 	
 	@Override

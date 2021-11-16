@@ -1,12 +1,16 @@
 package frame;
 
 import java.awt.Color;
-import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
-public class PaintFrame {
+public class PaintFrame extends JFrame {
+	
+	JTextField thickness_control; //도구 굵기가 정해질 텍스트 필드
+	
+	int thickness = 10; //현 변수는 그려지는 선의 굵기를 변경할 때 변경값이 저장되는 변수
 	
 	public static void main(String[] args) {
 		
@@ -29,6 +33,7 @@ public class PaintFrame {
 		
 		MouseHandler mouseHandler = new MouseHandler();
 		
+		canvas.addMouseListener(mouseHandler);
 		canvas.addMouseMotionListener(mouseHandler); //canvas에 mouseMotion 부착
 		mouseHandler.setcanvas(canvas);
 		
