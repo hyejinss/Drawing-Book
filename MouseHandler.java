@@ -1,48 +1,43 @@
 package frame;
 
-
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import javax.swing.JTextField;
 
 public class MouseHandler implements MouseListener, MouseMotionListener, ActionListener {
-	JTextField thickness_control; //도구 굵기가 정해질 텍스트 필드
-
-	private int endX;
-	private int endY;
-	private int startX;
-	private int startY;
 	private DrawingCanvas canvas;
 	
+	
 	public MouseHandler() {
-		startX = 0;
-		startY = 0;
-		endX = 0;
-		endY = 0;
 		canvas = null;
 	}
 	
+	//함수가 호출되는 시점을 파악해야한다!
+	
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) { //커서를 움직이지 않고 클릭만 했을때 
 		System.out.println("mouseClicked");
 	}
 	
 	@Override
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) { //커서를 클릭 후 움직이는 동작이 있을때
+
+		Point start_point = e.getPoint(); //커서 시작의 좌표를 지역변수 start_point에 넣는다
+		canvas.start_point = start_point; //지역변수 start_point의 X,Y 좌표를 canvas의 전역변수 start_point X,Y 자리에 각각 넣는다(두 변수 모두 Point클래스 타입이기 때문에)
+	
 		System.out.println("mousePressed");
-		
 	}
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		System.out.println("mouseReleased");
-		
 	}
-	
+
+
 	public void setcanvas(DrawingCanvas _canvas) {
 		canvas = _canvas;
 	}
@@ -56,32 +51,31 @@ public class MouseHandler implements MouseListener, MouseMotionListener, ActionL
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		endX = e.getX(); //드래그 되는 시점에서 X좌표가 저장 - 밑에서 시작좌표와 끝좌표를 연결해주어 선이 그어진다
-		endY = e.getY(); //드래그 되는 시점에서 Y좌표가 저장 - 밑에서 시작좌표와 끝좌표를 연결해주어 선이 그어진다
+		if(canvas == null) { //canvas를 참조하여 사용되는 함수는 exception이 발생되지않도록 null값일 경우 함수를 사용하지않고 리턴한다
+			return;
+		}
 		
-		if(canvas != null) {
-			canvas.setx(endX);
-			canvas.sety(endY);
-		}	
+		//null값이 아닐 시 함수사용 코드
+		Point end_point = e.getPoint(); //커서 끝의 좌표를 지역변수 end_point에 넣는다
+		canvas.end_point = end_point; //지역변수 end_point의 X,Y 좌표를 canvas의 전역변수 end_point X,Y 자리에 각각 넣는다(두 변수 모두 Point클래스 타입이기 때문에)
 		
-		canvas.repaint(); //마우스가 움직이는 동안 보여지기 
-		//System.out.println("마우스 x위치: " + mouse_x + "마우스 y위치: " + mouse_y);
+		canvas.repaint(); //마우스가 움직이는 동안 보여지기(dragged 시 선이 확인될 수 있도록)
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		//System.out.println("마우스 Moved Called");
+		System.out.println("마우스 Moved Called");
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
