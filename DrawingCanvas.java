@@ -5,12 +5,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-
 public class DrawingCanvas extends Canvas{
 
 	private Color color;
 	public Point start_point;
 	public Point end_point;	
+	
 	
 	
 	public DrawingCanvas(){
@@ -19,6 +19,8 @@ public class DrawingCanvas extends Canvas{
 
 		start_point = new Point(); //point클래스의 생성자를 호출하여 전역변수 start_point X,Y의 좌표를 넣는다
 		end_point = new Point(); //point클래스의 생성자를 호출하여 전역변수 end_point X,Y의 좌표를 넣는다
+		
+
 	}
 	
 	
@@ -36,4 +38,4 @@ public class DrawingCanvas extends Canvas{
 		paint(graphics);
 	}
 	
-}
+}///end of class

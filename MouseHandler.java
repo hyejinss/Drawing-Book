@@ -1,11 +1,14 @@
 package frame;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+
+import javax.swing.JColorChooser;
 
 
 public class MouseHandler implements MouseListener, MouseMotionListener, ActionListener {
@@ -24,7 +27,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, ActionL
 	}
 	
 	@Override
-	public void mousePressed(MouseEvent e) { //커서를 클릭 후 움직이는 동작이 있을때
+	public void mousePressed(MouseEvent e) { //커서가 눌러졌을 때
 
 		Point start_point = e.getPoint(); //커서 시작의 좌표를 지역변수 start_point에 넣는다
 		canvas.start_point = start_point; //지역변수 start_point의 X,Y 좌표를 canvas의 전역변수 start_point X,Y 자리에 각각 넣는다(두 변수 모두 Point클래스 타입이기 때문에)
@@ -33,7 +36,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, ActionL
 	}
 	
 	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void mouseReleased(MouseEvent e) { //눌러진 커서가 떼어질 때
 		System.out.println("mouseReleased");
 	}
 
@@ -47,10 +50,11 @@ public class MouseHandler implements MouseListener, MouseMotionListener, ActionL
 	public void actionPerformed(ActionEvent e) {
 		
 		
+		
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent e) {
+	public void mouseDragged(MouseEvent e) { //커서가 드래그되는 동안
 		if(canvas == null) { //canvas를 참조하여 사용되는 함수는 exception이 발생되지않도록 null값일 경우 함수를 사용하지않고 리턴한다
 			return;
 		}
@@ -63,7 +67,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, ActionL
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent e) {
+	public void mouseMoved(MouseEvent e) { //커서가 움직이는 동안
 		System.out.println("마우스 Moved Called");
 	}
 
@@ -79,4 +83,4 @@ public class MouseHandler implements MouseListener, MouseMotionListener, ActionL
 		
 	}
 	
-}
+}///end of class
